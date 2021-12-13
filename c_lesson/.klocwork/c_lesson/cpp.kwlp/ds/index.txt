@@ -1,0 +1,6 @@
+C:\D\08Private\C语言\万门\C语言\第十一、十二讲课件\c_lesson\c_lesson\c_lesson.cpp;C:\D\08Private\C语言\万门\C语言\第十一、十二讲课件\c_lesson\.klocwork\c_lesson\cpp.kwlp\ds\4\0h4l14ir.rzt;4;0;False;7CF2AB2D83A961DAD82D60D591AC52876D8E2FB6;False
+C:\D\08Private\c_lesson\c_lesson\define.h;C:\D\08Private\c_lesson\.klocwork\c_lesson\cpp.kwlp\ds\5\kaf203cy.ghz;5;0;False;5EE653B9965018200A8CE57A881BFBAED520EFE4;False
+C:\D\08Private\c_lesson\c_lesson\c_lesson.cpp;C:\D\08Private\c_lesson\.klocwork\c_lesson\cpp.kwlp\ds\8\0ob5skip.jjf;8;0;False;137679D65A702B3F3948A38DE1DFB322BEF89BDD;True
+C:\D\08Private\c_lesson\c_lesson\stdafx.h;;9;0;False;B01DF89E76284033015286D926A61444F2B27A9A;False
+C:\D\08Private\c_lesson\c_lesson\targetver.h;;10;0;False;1DFF574EBCB102DFC78C9A659A905673D13EDA91;False
+C:\D\08Private\c_lesson\c_lesson\stdafx.cpp;;11;0;False;C9F83701EE997EDD06EAFF4AD6DD4FCCB1BDC32A;False

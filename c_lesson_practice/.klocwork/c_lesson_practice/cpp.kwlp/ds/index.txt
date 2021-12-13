@@ -1,2 +1,0 @@
-C:\WorkSpace\c_lesson_practice\c_lesson_practice\c_lesson.cpp;C:\WorkSpace\c_lesson_practice\.klocwork\c_lesson_practice\cpp.kwlp\ds\2\nxaevz0s.d5l;2;0;False;771B1A6FA6849F85FAFE172E125CA495DA99D3B9;True
-C:\WorkSpace\c_lesson_practice\c_lesson_practice\define.h;C:\WorkSpace\c_lesson_practice\.klocwork\c_lesson_practice\cpp.kwlp\ds\4\5x5i5kgc.lti;4;0;False;609175BDE9006218E0B2043E1D971CEC77399A75;False
