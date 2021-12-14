@@ -2929,3 +2929,65 @@ int main()
     return 0;
 }
 #endif
+#if lesson_15_2
+typedef struct Link
+{
+    char elem;
+    struct Link * next;
+}link;
+link *initLink();
+void displayLink(link* p);
+int main()
+{
+    link *p = initLink();
+    displayLink(p);
+
+    return 0;
+}
+link *initLink()
+{
+    link *p = NULL;
+    link *temp = (link*)malloc(sizeof(link));
+    temp->elem = 1;
+    temp->next = NULL;
+    p = temp;
+
+    for (int i = 0; i < 5; i++)
+    {
+        link * a = (link *)malloc(sizeof(link));
+        a->elem = i;
+        a->next = NULL;
+        temp->next = a;
+        temp = temp->next;
+    }
+    return p;
+}
+void displayLink(link* p)
+{
+    link * temp = p;
+    while (temp)
+    {
+        printf("%d", temp->elem);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+link * insertLink(link *p, int elem, int add)
+{
+    link *temp = p;
+    for (int i = 1; i < add; i++)
+    {
+        temp = temp->next;
+        if (temp == NULL)
+        {
+            printf("insert position is not valid\n");
+            return p;
+        }
+    }
+    link * c = (link*)malloc(sizeof(link));
+    c->elem = elem;
+    c->next = temp->next;
+    temp->next = c;
+    return p;
+}
+#endif
