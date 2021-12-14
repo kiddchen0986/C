@@ -2937,9 +2937,35 @@ typedef struct Link
 }link;
 link *initLink();
 void displayLink(link* p);
+link * insertLink(link *p, int elem, int add);
+link * deleteLink(link *p, int add);
+int selectLink(link *p, int elem);
+link *amendLink(link *p, int elem, int add);
 int main()
 {
     link *p = initLink();
+    displayLink(p);
+
+    printf("insert one data into link table\n");
+    p=insertLink(p, 10, 3);
+    printf("display new link table\n");
+    displayLink(p);
+
+
+    printf("delete one data into link table\n");
+    p = deleteLink(p, 3);
+    printf("display new link table\n");
+    displayLink(p);
+
+
+    printf("select one data into link table\n");
+    int index = selectLink(p, 3);
+    printf("the value you want to select is index %d\n",index);
+
+
+    printf("update one data value of link table\n");
+    p = amendLink(p, 5, 3);
+    printf("display table after updated\n");
     displayLink(p);
 
     return 0;
@@ -2952,7 +2978,7 @@ link *initLink()
     temp->next = NULL;
     p = temp;
 
-    for (int i = 0; i < 5; i++)
+    for (int i = 2; i < 5; i++)
     {
         link * a = (link *)malloc(sizeof(link));
         a->elem = i;
@@ -2990,4 +3016,137 @@ link * insertLink(link *p, int elem, int add)
     temp->next = c;
     return p;
 }
+link * deleteLink(link *p, int add)
+{
+    link* temp = p;
+    for (int i = 1; i < add; i++)
+    {
+        temp = temp->next;
+        if (temp->next == NULL)
+        {
+            printf("delete position is not valid\n");
+        }
+    }
+    link* del = temp->next;
+    temp->next = temp->next->next;
+    free(del);
+
+    return p;
+}
+int selectLink(link *p, int elem)
+{
+    link *temp = p;
+    int i = 1;
+    while (temp->next)
+    {
+        if (temp->elem == elem)
+        {
+            return i;
+        }
+        i++;
+        temp = temp->next;
+    }
+    printf("not found this value\n");
+    return 0;
+}
+link *amendLink(link *p, int elem, int add)
+{
+    link* temp = p;
+    for (int i = 1; i < add; i++)
+    {
+        temp = temp->next;
+    }
+    temp->elem = elem;
+    return p;
+}
+#endif
+#if lesson_15_3
+typedef struct Link
+{
+    char elem;
+    struct Link * next;
+}link;
+bool linkIntersect(link *L1, link *L2)
+{
+    link *p1 = L1;
+    link *p2 = L2;
+
+    while (p1)
+    {
+        while (p2)
+        {
+            if (p1 == p2)
+            {
+                return true;
+            }
+            p2 = p2->next;
+        }
+        p1 = p1->next;
+    }
+}
+// method-2
+bool linkIntersect_2(link *L1, link *L2)
+{
+    link *p1 = L1;
+    link *p2 = L2;
+    while (p1->next)
+    {
+        p1 = p1->next;
+    }
+    while (p2->next)
+    {
+        p2 = p2->next;
+    }
+    if (p1 == p2)
+    {
+        return true;
+    }
+    return false;
+}
+// method-3
+bool linkIntersect(link *L1, link *L2)
+{
+    link *plong = L1;
+    link *pshort = L2;
+    link *temp=NULL;
+    int num1 = 0, num2 = 0, step = 0;
+    while (plong)
+    {
+        num1++;
+        plong = plong->next;
+    }
+    while (pshort)
+    {
+        num2++;
+        pshort = pshort->next;
+    }
+
+    plong = L1;
+    pshort = L2;
+    step = num1 - num2;
+    if (num1 < num2)
+    {
+        plong = L2;
+        pshort = L1;
+        step = num2 - num1;
+
+    }
+    temp = plong;
+    while (step)
+    {
+        temp = temp->next;
+        step--;
+    }
+    while (temp && pshort)
+    {
+        if (temp == pshort)
+        {
+            return true;
+        }
+        temp = temp->next;
+        pshort = pshort->next;
+    }
+    return false;
+}
+
 #endif

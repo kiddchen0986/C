@@ -118,4 +118,5 @@
  ******c语言中文网练习
 */
 #define lesson_15_1 0       /*线性表：顺序表*/
-#define lesson_15_2 1       /*线性表：链表*/
+#define lesson_15_2 0       /*线性表：链表*/
+#define lesson_15_3 1       /*线性表：判断链表是否相交*/
