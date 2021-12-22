@@ -3214,3 +3214,72 @@ void displayArr(component * array, int body) {
     printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);
 }
 #endif
+
+#if lesson_16_1
+#include<string>
+void* mymemorycopy(void* dest, void* src, size_t count)
+{
+    char* pdest = static_cast<char*> (dest);
+    char* psrc = static_cast<char*>(src);
+
+    size_t i;
+    if ((pdest > psrc) && (pdest < psrc + count))
+    {
+        for (i = count - 1; i != -1; i--)
+        {
+            pdest[i] = psrc[i];
+        }
+
+    }
+    else
+    {
+        for (int i = 0; i < count; i++)
+        {
+            pdest[i] = psrc[i];
+        }
+    }
+    return dest;
+}
+int main()
+{
+    char str[] = "0123456789";
+    mymemorycopy(str + 1, str + 0, 9);
+    printf(str);
+
+
+    return 0;
+}
+#endif
+#if lesson_16_2
+void* mymemorycopy(void* dest, void* src, size_t count)
+{
+    char* pd = (char*)dest;
+    char* ps = (char*)src;
+
+    if (pd <= ps || pd >= ps + count)
+    {
+        while (count--)
+        {
+            *pd++ = *ps++;
+        }
+    }
+    else
+    {
+        pd += count - 1;
+        ps += count - 1;
+        while (count--)
+        {
+            *pd-- = *ps--;
+        }
+    }
+    return dest;
+}
+int main()
+{
+    char str1[] = "0123456789";
+    char* str2 = str1 + 15;
+    mymemorycopy(str2, str1 + 0, 9);
+    printf(str2);
+    return 0;
+}
+#endif
