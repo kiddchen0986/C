@@ -121,8 +121,9 @@
 #define lesson_15_2 0       /*线性表：链表*/
 #define lesson_15_3 0       /*线性表：判断链表是否相交*/
 #define lesson_15_4 0       /*静态链表的创建*/
+#define lesson_15_5 1       /*双链表的创建*/
 /*****************
  ******面试题
 */
 #define lesson_16_1 0   /*方法一：copy一段内存*/
-#define lesson_16_2 1   /*方法二：copy一段内存*/
+#define lesson_16_2 0   /*方法二：copy一段内存*/

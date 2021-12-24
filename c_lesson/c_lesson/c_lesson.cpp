@@ -3151,7 +3151,7 @@ bool linkIntersect(link *L1, link *L2)
 #endif
 #if lesson_15_4
 #define Maxsize 6
-typedef struct 
+typedef struct
 {
     int data;
     int cur;
@@ -3172,7 +3172,7 @@ int main() {
     displayArr(array, body);
     return 0;
 }
-void reserveArr(component *array) 
+void reserveArr(component *array)
 {
     for(int i=1;i<Maxsize;i++)
     {
@@ -3181,10 +3181,10 @@ void reserveArr(component *array)
     }
     array[Maxsize - 1].cur = 0;
 }
-int mallocArr(component *array) 
+int mallocArr(component *array)
 {
     int i = array[0].cur;
-    if (array[0].cur) 
+    if (array[0].cur)
     {
         array[0].cur = array[i].cur;
     }
@@ -3214,7 +3214,135 @@ void displayArr(component * array, int body) {
     printf("%d,%d\n", array[tempBody].data, array[tempBody].cur);
 }
 #endif
+#if lesson_15_5
+typedef struct line
+{
+    line* prev;
+    int data;
+    line* next;
+}line;
+line* initLine(line* head);
+void displayLine(line* head);
+line* insertLine(line* head, int data, int add);
+line* deleteLine(line* head, int dele);
 
+int main()
+{
+    line* head= (line*)malloc(sizeof(line));
+    head = initLine(head);
+    displayLine(head);
+    //printf("\n%d", head->next->next->next->prev->data);
+    printf("\n");
+    //head = insertLine(head, 7, 0);
+    //displayLine(head);
+
+    printf("\n");
+    head = deleteLine(head, 2);
+    displayLine(head);
+
+    return 0;
+}
+line* initLine(line* head)
+{
+    head=(line*)malloc(sizeof(line));
+    head->prev = NULL;
+    head->data = 1;
+    head->next = NULL;
+
+    line* list = head;
+
+    for (int i = 2; i <= 5; i++)
+    {
+        line* body = (line*)malloc(sizeof(line));
+        body->prev = NULL;
+        body->data = i;
+        body->next = NULL;
+
+        list->next = body;
+        body->prev = list;
+        list = list->next;
+    }
+    return head;
+}
+void displayLine(line* head)
+{
+    line* temp = head;
+    while (temp)
+    {
+        if (temp->next == NULL)
+        {
+            printf("%d", temp->data);
+        }
+        else
+        {
+            printf("%d <-> ", temp->data);
+        }
+        temp = temp->next;
+
+    }
+}
+line* insertLine(line* head, int data, int add)
+{
+    line* temp = (line*)malloc(sizeof(line));
+    temp->prev = NULL;
+    temp->data = data;
+    temp->next = NULL;
+
+    if (add == 0)
+    {
+        temp->next = head;
+        head->prev = temp;
+        head = temp;
+    }
+    else
+    {
+        line* body = (line*)malloc(sizeof(line));
+        body = head;
+        for (int i = 1; i < add; i++)
+        {
+            body = body->next;
+        }
+        if (body->next == NULL)
+        {
+            body->next = temp;
+            temp->prev = body;
+        }
+        else
+        {
+            temp->next = body->next;
+            body->next->prev = temp;
+            body->next = temp;
+            temp->prev = body;
+        }
+    }
+    return head;
+}
+line* deleteLine(line* head, int dele)
+{
+    line* temp = (line*)malloc(sizeof(line));
+    temp = head;
+    line* deleline = NULL;
+
+    for (int i = 2; i < dele; i++)
+    {
+        temp = temp->next;
+    }
+
+    deleline = temp->next;
+    if (deleline->next != NULL)
+    {
+        temp->next->next->prev = temp;
+        temp->next = temp->next->next;
+    }
+    else
+    {
+        temp->next = NULL;
+    }
+
+    free(deleline);
+    return head;
+}
+#endif
 #if lesson_16_1
 #include<string>
 void* mymemorycopy(void* dest, void* src, size_t count)
