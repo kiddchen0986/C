@@ -2817,6 +2817,117 @@ void sort(char *name[], int n)
     }
 }
 #endif
+#if lesson_15_1_4_2_0
+#include"windows.h"
+int main() 
+{
+    // 设置坐标
+    COORD coord;
+    coord.X = 0;
+    coord.Y = 0;
+    // 获取控制台缓冲区句柄
+    HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    // 设置光标位置
+    SetConsoleCursorPosition(ConsoleHandle, coord);
+
+    printf("https://www.baidu.com\n");
+
+    return 0;
+}
+#endif
+#if lesson_15_1_4_2_1
+#include"windows.h"
+void setCursorPosition(int x, int y);
+void setColor(int color);
+
+int main() 
+{
+    setColor(3);
+    setCursorPosition(3, 3);
+    puts("★");
+
+    setColor(0XC);
+    setCursorPosition(4, 4);
+    puts("◆");
+
+    setColor(6);
+    setCursorPosition(6, 6);
+    puts("■");
+
+    return 0;
+}
+void setCursorPosition(int x, int y)
+{
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    HANDLE ConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorPosition(ConsoleHandle, coord);
+}
+void setColor(int color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+#endif
+#if lesson_15_1_4_6
+int main() 
+{
+    int a = 1, b = 2;
+    scanf("a=%d", &a);
+    scanf("\nb=%d", &b);
+    printf("a=%d, b=%d\n", a, b);
+
+    return 0;
+}
+#endif
+#if lesson_15_1_4_8
+int main() 
+{
+    // specified length
+    /*int a;
+    float f;
+    char str[15];
+    scanf("%2d", &a);
+    printf("%d", a);
+    scanf("%*[^\n]"); scanf("%*c");
+
+    scanf("%3f", &f);
+    printf("%f", f);
+
+    scanf("%10s", str);
+    printf("%s", str);*/
+
+    // match specified pattern
+    //scanf("%[abcd]", str);
+    //scanf("%*[^\n]"); scanf("%*c");
+    //printf("%s", str);
+
+    //scanf("%[a-zA-Z0-9]", str);
+    //printf("%s", str);
+
+    // not match some characters
+    //char str1[30], str2[30];
+    //scanf("%[^0-9]", str1);
+    //scanf("%*[^\n]"); scanf("%*c");  //清空缓冲区
+    //scanf("%[^\n]", str2);
+    //printf("str1=%s \nstr2=%s\n", str1, str2);
+
+    // match a string with lenth 15 and not \n
+ /*   char str3[15];
+    scanf("%15[^\n]", str3);
+    printf("%14s", str3);*/
+
+    // clear characters
+    //int n;
+    //char str4[30];
+    //scanf("%*d, %d", &n);   // 111, 222abcXYZ
+    //scanf("%*[a-z]");
+    //scanf("%[^\n]", str4);
+    //printf("n = %d, str4 = %s", n, str4);
+
+    return 0;
+}
+#endif
 #if lesson_15_1
 #define Size 5
 typedef struct Table
