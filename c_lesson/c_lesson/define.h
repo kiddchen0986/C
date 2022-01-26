@@ -123,7 +123,9 @@
 #define lesson_15_1_4_2_0 0   /*C语言在屏幕的任意位置输出字符，开发小游戏的第一步*/
 #define lesson_15_1_4_2_1 0   /*C语言在屏幕的任意位置输出字符，开发小游戏的第一步*/
 #define lesson_15_1_4_6   0   /*结合C语言缓冲区谈scanf函数，那些奇怪的行为其实都有章可循*/
-#define lesson_15_1_4_8   1   /*advantage usage of scanf*/
+#define lesson_15_1_4_8   0   /*advantage usage of scanf*/
+#define lesson_15_1_4_9   0   /*Password print*/
+#define lesson_15_1_4_10  0   /*非阻塞式键盘监听 kbhit()*/
 /*******************
  *****C data struct******
  */

@@ -2928,6 +2928,70 @@ int main()
     return 0;
 }
 #endif
+#if lesson_15_1_4_9
+#include"conio.h"
+#define PWDLEN 20
+void getpwd(char *str, int l);
+int main()
+{
+    char pwd[20];
+
+    printf("Enter your password: \n");
+    getpwd(pwd, PWDLEN);
+    printf("Your entered password is : %s\n", pwd);
+}
+void getpwd(char *pwd, int len) 
+{
+    int i = 0;
+    while (i < len) 
+    {
+        char ch = getch();
+        if (ch == '\r') 
+        {
+            printf("\n");
+            break;
+        }
+
+        if ((ch == '\b') && (i > 0))
+        {
+            i--;
+            printf("\b \b");
+        }
+        else if (isprint(ch)) 
+        {
+            pwd[i] = ch;
+            printf("*");
+            i++;
+        }
+    }
+    pwd[i] = 0;
+}
+#endif
+#if lesson_15_1_4_10
+#include"conio.h"
+#include"windows.h"
+int main() 
+{
+    int i = 0;
+    char ch;
+    while (1) 
+    {
+        if (kbhit()) 
+        {
+            ch = getch();
+            if (ch == 27) 
+            {
+                break;
+            }
+        }
+        printf("Number : %d\n", i);
+        Sleep(1000);
+        i++;
+    }
+
+    return 0;
+}
+#endif
 #if lesson_15_1
 #define Size 5
 typedef struct Table
