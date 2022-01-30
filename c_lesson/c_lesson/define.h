@@ -126,6 +126,10 @@
 #define lesson_15_1_4_8   0   /*advantage usage of scanf*/
 #define lesson_15_1_4_9   0   /*Password print*/
 #define lesson_15_1_4_10  0   /*非阻塞式键盘监听 kbhit()*/
+#define lesson_15_7 0         /*strtoul usage*/
+#define lesson_15_8 0         /*pi : methon 1*/
+#define lesson_15_9 0         /*pi : methon 2*/
+#define lesson_15_10 1        /*pi : methon 3*/
 /*******************
  *****C data struct******
  */
@@ -134,6 +138,7 @@
 #define lesson_15_3 0       /*线性表：判断链表是否相交*/
 #define lesson_15_4 0       /*静态链表的创建*/
 #define lesson_15_5 0       /*双链表的创建*/
+#define lesson_15_6 0       /*浮点数存储结构*/
 /*****************
  ******面试题
 */

@@ -2992,6 +2992,96 @@ int main()
     return 0;
 }
 #endif
+#if lesson_15_7
+int main()
+{
+    char str[20] = "201314fpcMTT";
+    char *ptr;
+    int ret;
+    // strtoul usage
+    ret = strtoul(str, &ptr, 10);
+    printf("ret = %d\n", ret);
+    printf("*ptr = %s\n", ptr);
+
+    // strstr() usage
+    char str1[15] = "uart=115200";
+    char *key;
+    key = strstr(str1, "=");
+    printf("The key = %c\n", *key);
+    printf("The string of key = %s\n", key);
+    key[0] = '\0';
+    printf("\nThe key = %c\n", *key);
+    printf("The string of key = %s", key);
+
+    char* key_value = key + 1;
+    if (strcmp(str1, "uart") == 0)
+    {
+        printf("compare result  = 0");
+    }
+
+    return 0;
+}
+#endif
+#if lesson_15_8
+#include<math.h>
+int main()
+{
+    float p = 0.0;
+    float pi = 1.0;
+    float s = 1.0;
+    float n = 1.0;
+    while (fabs(pi) >= 1e-6)
+    {
+        p += pi;
+        s = -s;
+        n = n + 2.0;
+        pi = s / n;
+    }
+    p = 4 * p;
+    printf("p : %.6f", p);
+}
+#endif
+#if lesson_15_9
+int main()
+{
+    float p = 1.0;
+    float pi = 1.0;
+    int count = 0;
+
+    for(int i=3;i<=100;i+=2)
+    {
+        for (int j = i - 1; j <= i + 1; j=j+2)
+        {
+            count++;
+            pi = float(j) / i;
+            p = p * pi;
+        }
+    }
+    p = p * 4;
+    printf("p is : %6f", p);
+    printf("count : %d", count);
+    return 0;
+}
+#endif
+#if lesson_15_10
+int main()
+{
+    int i = 0;
+    float p = 1.0, pi = 1.0;
+    float n = 3.0;
+    while (n < 100)
+    {
+        p = p * pi;
+        float x = (n*n - 1);
+        float y = (n*n);
+        pi = x / y;
+        n = n + 2;
+    }
+    p = p * 4;
+    printf("p is : %f",p);
+    return 0;
+}
+#endif
 #if lesson_15_1
 #define Size 5
 typedef struct Table
@@ -3516,6 +3606,29 @@ line* deleteLine(line* head, int dele)
 
     free(deleline);
     return head;
+}
+#endif
+#if lesson_15_6
+typedef struct {
+    unsigned int nMant : 23;
+    unsigned int nExp : 8;
+    unsigned int nSign : 1;
+}FP_SINGLE;
+
+int main()
+{
+    char strBin[24] = { 0 };
+    float f = 19.65;
+    FP_SINGLE *p = (FP_SINGLE*)&f;
+
+    itoa(p->nMant, strBin, 2);
+    printf("nMant : %s\n", strBin);
+    itoa(p->nExp, strBin, 2);
+    printf("nExp : %s\n", strBin);
+    itoa(p->nSign, strBin, 2);
+    printf("nSign : %s\n", strBin);
+
+    return 0;
 }
 #endif
 #if lesson_16_1
