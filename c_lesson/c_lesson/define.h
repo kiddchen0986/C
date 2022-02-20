@@ -129,7 +129,7 @@
 #define lesson_15_7 0         /*strtoul usage*/
 #define lesson_15_8 0         /*pi : methon 1*/
 #define lesson_15_9 0         /*pi : methon 2*/
-#define lesson_15_10 1        /*pi : methon 3*/
+#define lesson_15_10 0        /*pi : methon 3*/
 /*******************
  *****C data struct******
  */
@@ -144,3 +144,7 @@
 */
 #define lesson_16_1 0   /*方法一：copy一段内存*/
 #define lesson_16_2 0   /*方法二：copy一段内存*/
+/*****************
+ ******Self exercise
+*/
+#define lesson_17_1 1   /*Summarize MTT code amount*/

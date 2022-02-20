@@ -2819,7 +2819,7 @@ void sort(char *name[], int n)
 #endif
 #if lesson_15_1_4_2_0
 #include"windows.h"
-int main() 
+int main()
 {
     // 设置坐标
     COORD coord;
@@ -2840,7 +2840,7 @@ int main()
 void setCursorPosition(int x, int y);
 void setColor(int color);
 
-int main() 
+int main()
 {
     setColor(3);
     setCursorPosition(3, 3);
@@ -2870,7 +2870,7 @@ void setColor(int color)
 }
 #endif
 #if lesson_15_1_4_6
-int main() 
+int main()
 {
     int a = 1, b = 2;
     scanf("a=%d", &a);
@@ -2881,7 +2881,7 @@ int main()
 }
 #endif
 #if lesson_15_1_4_8
-int main() 
+int main()
 {
     // specified length
     /*int a;
@@ -2940,13 +2940,13 @@ int main()
     getpwd(pwd, PWDLEN);
     printf("Your entered password is : %s\n", pwd);
 }
-void getpwd(char *pwd, int len) 
+void getpwd(char *pwd, int len)
 {
     int i = 0;
-    while (i < len) 
+    while (i < len)
     {
         char ch = getch();
-        if (ch == '\r') 
+        if (ch == '\r')
         {
             printf("\n");
             break;
@@ -2957,7 +2957,7 @@ void getpwd(char *pwd, int len)
             i--;
             printf("\b \b");
         }
-        else if (isprint(ch)) 
+        else if (isprint(ch))
         {
             pwd[i] = ch;
             printf("*");
@@ -2970,16 +2970,16 @@ void getpwd(char *pwd, int len)
 #if lesson_15_1_4_10
 #include"conio.h"
 #include"windows.h"
-int main() 
+int main()
 {
     int i = 0;
     char ch;
-    while (1) 
+    while (1)
     {
-        if (kbhit()) 
+        if (kbhit())
         {
             ch = getch();
-            if (ch == 27) 
+            if (ch == 27)
             {
                 break;
             }
@@ -3697,5 +3697,239 @@ int main()
     mymemorycopy(str2, str1 + 0, 9);
     printf(str2);
     return 0;
+}
+#endif
+#if lesson_17_1
+#include <stdio.h>
+#include <stdlib.h>
+#include "string.h"
+#include "conio.h"
+#define N 376
+#define M 0xFFFFFFFF
+
+#define COMMAND "DIR /D C:\\WorkSpace\\mtt\\dev\\dev4\\frameworks /s /B > "
+#define ALL_FILES_PATH_LOG "FilesPath.log"
+#define FPC_FILE_LOG "FPC_File_path.log"
+
+void GetFilesPath();
+void GetFPCFilesPath();
+FILE *OpenFile(char *file, char *mode);
+char *TrailString(char *line);
+bool IsCFile(char *filename, int len);
+bool IsFPCFile(FILE *fp, char *str);
+int AllFpcFilesCount(FILE *fp);
+void IgnoreComment1(FILE *fp, char *str);
+void WriteFPCFileNameToLog(char *fpcfilepath[], int count);
+int main()
+{
+    FILE *fl, *fp;
+    char ch;
+    int len = 0, sum = 0;
+    long int count = 0;
+    char filename[N] = { 0 };
+    char str[N] = { 0 }, *line;
+    GetFilesPath();
+    GetFPCFilesPath();
+
+    fl = OpenFile(FPC_FILE_LOG, "r");
+    while (fgets(filename, N, fl) != NULL)
+    {
+        len = strlen(filename);
+        filename[len - 1] = '\0';
+        printf("file name is %s\n", filename);
+        printf("file name is %d\n", len);
+
+        count = 0;
+        fp = OpenFile(filename, "r");
+        while (fgets(str, N, fp) != NULL)
+        {
+            str[strlen(str) - 1] = '\0';
+
+            line = TrailString(str);
+            if ((line[0] == '/') && (line[1] == '*'))
+            {
+                // ignore kind of comment 1, i.e. /**/
+                IgnoreComment1(fp, line);
+                continue;
+            }
+            else if ((line[0] == '/') && (line[1] == '/'))
+            {
+                // ignore kind of comment 2, i.e. //
+                continue;
+            }
+            else if (strlen(line) == 0)
+            {
+                // ignore blank line
+                continue;
+            }
+            count++;
+        }
+        fclose(fp);
+        sum += count;
+        printf("The quantity in %s is %d\n", filename, count);
+    }
+    printf("Total line number is : %d", sum);
+    fclose(fl);
+
+    return 0;
+}
+
+void GetFilesPath()
+{
+    int len = 0, i = 0;
+    FILE *fl, *fp, *fw;
+    char filename[N] = { 0 };
+    char str[N] = { 0 };
+    char *line = NULL;
+    char command[500] = COMMAND;
+    strcat(command, ALL_FILES_PATH_LOG);
+    system(command);
+}
+int AllFpcFilesCount()
+{
+    FILE *fp;
+    int count = 0;
+    char str[N] = { 0 };
+
+    fp = OpenFile(ALL_FILES_PATH_LOG, "r");
+    while (fgets(str, N, fp) != NULL)
+    {
+        count++;
+    }
+    fclose(fp);
+    return count;
+}
+void GetFPCFilesPath()
+{
+    int path_len = 0;
+    long count = 0;
+    FILE *fl, *fp, *fw;
+    char filename[N] = { 0 };
+    char str[N] = { 0 };
+    char *line = NULL;
+    char *fpcfilepath[5000] = { 0 };
+
+    fl = OpenFile(ALL_FILES_PATH_LOG, "r");
+    while (fgets(filename, N, fl) != NULL)
+    {
+        path_len = strlen(filename);
+        filename[path_len - 1] = '\0';
+
+        if (IsCFile(filename, path_len))
+        {
+            fp = OpenFile(filename, "r");
+            if (fgets(str, N, fp) != NULL)
+            {
+                str[strlen(str) - 1] = '\0';
+                line = TrailString(str);
+
+                if ((line[0] == '/') && ((line[1] == '*') || (line[1] == '/')))
+                {
+                    if (IsFPCFile(fp, line))
+                    {
+                        char *temp = (char*)calloc(strlen(filename), sizeof(char));
+                        memcpy(temp, filename, path_len);
+                        fpcfilepath[count++] = temp;
+                        temp = NULL;
+                        free(temp);
+                    }
+                }
+            }
+            fclose(fp);
+        }
+    }
+    fclose(fl);
+    WriteFPCFileNameToLog(fpcfilepath, count);
+}
+void WriteFPCFileNameToLog(char *fpcfilepath[], int count)
+{
+    FILE *fw;
+    fw = OpenFile(FPC_FILE_LOG, "w");
+    for (int i = 0; i < count; i++)
+    {
+        fputs(fpcfilepath[i], fw);
+        fputc('\n', fw);
+    }
+    fclose(fw);
+}
+FILE *OpenFile(char *file, char *mode)
+{
+    FILE *fp;
+    if ((fp = fopen(file, mode)) == NULL)
+    {
+        printf("%s can not be opened", file);
+        exit(0);
+    }
+    return fp;
+}
+char *TrailString(char *line)
+{
+    char *str = line;
+    for (int i = 0; i < N && line[i] != '\0'; i++)
+    {
+        if (isspace(line[i]))
+        {
+            str = line + 1;
+            line = line + 1;
+            i--;
+        }
+        else
+        {
+            break;
+        }
+    }
+    return str;
+}
+
+bool IsCFile(char *filename, int len)
+{
+    bool status = false;
+    if (((filename[len - 3] == '.') &&
+        (((filename[len - 2]) == 'h') || ((filename[len - 2]) == 'c'))) ||
+        (filename[len - 2] == 'p' && filename[len - 3] == 'p' &&
+            filename[len - 4] == 'c' && filename[len - 5] == '.'))
+    {
+        status = true;
+    }
+    return status;
+}
+bool IsFPCFile(FILE *fp, char *line)
+{
+    int i = 0;
+    bool status = false;
+    char str[N] = { 0 };
+    while ((fgets(str, N, fp) != NULL) && (i < 10))
+    {
+        str[strlen(str) - 1] = '\0';
+
+        line = TrailString(str);
+        if (strstr(line, "Fingerprint Cards") != NULL)
+        {
+            status = true;
+            break;
+        }
+        i++;
+    }
+    return status;
+}
+void IgnoreComment1(FILE *fp, char *line)
+{
+    char str[N] = { 0 };
+    if ((line[strlen(line) - 2] == '/') && (line[strlen(line) - 3] == '*'))
+    {
+        ;
+    }
+    else
+    {
+        while (fgets(str, N, fp) != NULL)
+        {
+            line = TrailString(str);
+            line[strlen(line) - 1] = '\0';
+            if ((line[0] == '*') && (line[1] == '/'))
+            {
+                break;
+            }
+        }
+    }
 }
 #endif
