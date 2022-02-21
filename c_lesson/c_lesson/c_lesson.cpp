@@ -3707,15 +3707,21 @@ int main()
 #define N 376
 #define M 0xFFFFFFFF
 
-#define COMMAND "DIR /D C:\\WorkSpace\\mtt\\dev\\dev4\\frameworks /s /B > "
+#define COMMAND "DIR /D C:\\WorkSpace\\mtt\\dev\\dev4 /s /B > "
 #define ALL_FILES_PATH_LOG "FilesPath.log"
 #define FPC_FILE_LOG "FPC_File_path.log"
+
+static int c_file_number = 0;
+static int cpp_file_number = 0;
+static int h_file_number = 0;
+static int cs_file_number = 0;
 
 void GetFilesPath();
 void GetFPCFilesPath();
 FILE *OpenFile(char *file, char *mode);
 char *TrailString(char *line);
 bool IsCFile(char *filename, int len);
+bool IsCSFile(char *filename, int len);
 bool IsFPCFile(FILE *fp, char *str);
 int AllFpcFilesCount(FILE *fp);
 void IgnoreComment1(FILE *fp, char *str);
@@ -3766,11 +3772,15 @@ int main()
         }
         fclose(fp);
         sum += count;
-        printf("The quantity in %s is %d\n", filename, count);
+        printf("The number of lines of %s is %d\n", filename, count);
     }
-    printf("Total line number is : %d", sum);
+    printf("\n**********************\n");
+    printf("Total line number of all files is : %d\n", sum);
+    printf("The total number of h file: %d\n", h_file_number);
+    printf("The total number of c file: %d\n", c_file_number);
+    printf("The total number of cpp file: %d\n", cpp_file_number);
+    printf("The total number of cs file: %d\n", cs_file_number);
     fclose(fl);
-
     return 0;
 }
 
@@ -3815,7 +3825,7 @@ void GetFPCFilesPath()
         path_len = strlen(filename);
         filename[path_len - 1] = '\0';
 
-        if (IsCFile(filename, path_len))
+        if (IsCFile(filename, path_len) || IsCSFile(filename, path_len))
         {
             fp = OpenFile(filename, "r");
             if (fgets(str, N, fp) != NULL)
@@ -3884,11 +3894,31 @@ char *TrailString(char *line)
 bool IsCFile(char *filename, int len)
 {
     bool status = false;
-    if (((filename[len - 3] == '.') &&
-        (((filename[len - 2]) == 'h') || ((filename[len - 2]) == 'c'))) ||
-        (filename[len - 2] == 'p' && filename[len - 3] == 'p' &&
-            filename[len - 4] == 'c' && filename[len - 5] == '.'))
+    if ((filename[len - 3] == '.') && ((filename[len - 2]) == 'h'))
     {
+        h_file_number++;
+        status = true;
+    }
+    else if(((filename[len - 3] == '.') && ((filename[len - 2]) == 'c')))
+    {
+        c_file_number++;
+        status = true;
+    }
+    else if (filename[len - 2] == 'p' && filename[len - 3] == 'p' &&
+            filename[len - 4] == 'c' && filename[len - 5] == '.')
+    {
+        cpp_file_number++;
+        status = true;
+    }
+
+    return status;
+}
+bool IsCSFile(char *filename, int len)
+{
+    bool status = false;
+    if (filename[len - 2] == 's' && filename[len - 3] == 'c' && filename[len - 4] == '.')
+    {
+        cs_file_number++;
         status = true;
     }
     return status;
