@@ -1,26 +1,13 @@
-﻿  c_lesson.cpp
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u5185' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u5B58' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u5206' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u914D' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u5931' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2834): warning C4566: character represented by universal-character-name '\u8D25' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u63D2' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u5165' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u4F4D' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u7F6E' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u6709' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u95EE' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2852): warning C4566: character represented by universal-character-name '\u9898' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2860): warning C4566: character represented by universal-character-name '\u5206' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2860): warning C4566: character represented by universal-character-name '\u914D' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2860): warning C4566: character represented by universal-character-name '\u5931' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2860): warning C4566: character represented by universal-character-name '\u8D25' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u5220' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u9664' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u7684' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u4F4D' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u7F6E' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u4E0D' cannot be represented in the current code page (1252)
-c:\workspace\programming\c\temp\c\c_lesson\c_lesson\c_lesson.cpp(2878): warning C4566: character represented by universal-character-name '\u5BF9' cannot be represented in the current code page (1252)
-  c_lesson.vcxproj -> C:\WorkSpace\Programming\C\temp\C\c_lesson\Debug\c_lesson.exe
+﻿  data_structure.c
+  multi_thread.c
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(75): warning C4477: 'printf' : format string '%u' requires an argument of type 'unsigned int', but variadic argument 1 has type 'pthread_t'
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(88): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'pthread_t'
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u7EBF' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u7A0B' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u521B' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u5EFA' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u5931' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(108): warning C4566: character represented by universal-character-name '\u8D25' cannot be represented in the current code page (1252)
+e:\workspace\programming\c\c\c_lesson\c_lesson\multi_thread.c(101): warning C4101: 'ans': unreferenced local variable
+  Generating Code...
+  c_lesson.vcxproj -> E:\workspace\programming\c\c\c_lesson\Debug\c_lesson.exe

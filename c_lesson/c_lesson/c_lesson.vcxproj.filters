@@ -16,23 +16,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="multi_thread.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
+    <ClInclude Include="data_structure.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="multi_thread.c">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="c_lesson.cpp">
+    <ClCompile Include="data_structure.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
