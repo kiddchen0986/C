@@ -139,6 +139,11 @@
 #define lesson_15_4 0       /*静态链表的创建*/
 #define lesson_15_5 0       /*双链表的创建*/
 #define lesson_15_6 0       /*浮点数存储结构*/
+/*********Stack and queue ********/
+#define lesson_15_3_2 0     /*stack*/
+#define lesson_15_3_3 0     /*stack*/
+#define lesson_15_3_4 1     /*stack*/
+
 /*****************
  ******面试题
 */

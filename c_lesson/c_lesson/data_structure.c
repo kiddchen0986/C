@@ -3106,29 +3106,28 @@ void displayTable(table t)
         printf("%d\n", t.head[i]);
     }
 }
-table insertTable(table t, int elem, int add)
+table insertTable(table t, int elem, int index) 
 {
-    if ((add > t.length + 1) || add < 0)
+    if (index > t.length+1 || index < 0) 
     {
-        printf("插入位置有问题\n");
+        printf("insert position is out of range!\n");
         return t;
     }
-    if (t.length == t.size)
+    if (t.length == t.size) 
     {
-        t.head = (int*)realloc(t.head, (t.size + 1) * sizeof(int));
-        if (!t.head)
+        t.head = (int *)realloc(t.head, (t.size + 1) * sizeof(int));
+        if (!t.head) 
         {
-            printf("分配失败\n");
+            printf("realloc is failed!\n");
             exit(0);
         }
-
         t.size++;
     }
-    for (int i = t.length-1; i >=add-1; i--)
+    for (int i = t.length-1; i >= index-1; i--) 
     {
-        t.head[i+1] = t.head[i];
+        t.head[i + 1] = t.head[i];
     }
-    t.head[add - 1] = elem;
+    t.head[index-1] = elem;
     t.length++;
     return t;
 }
@@ -3624,6 +3623,160 @@ int main()
     itoa(p->nSign, strBin, 2);
     printf("nSign : %s\n", strBin);
 
+    return 0;
+}
+#endif
+#if lesson_15_3_2
+int push(int *a, int top, int elem) 
+{
+    a[++top] = elem;
+    return top;
+}
+int pop(int *a, int top) 
+{
+    if (top == -1) 
+    {
+        printf("stack is empty!\n");
+        return -1;
+    }
+    printf("pop out of stack is %d\n", a[top]);
+    top--;
+    return top;
+}
+int main() 
+{
+    int a[100];
+    int top = -1;
+    top = push(a, top, 1);
+    top = push(a, top, 2);
+    top = push(a, top, 3);
+    top = push(a, top, 4);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    top = pop(a, top);
+    return 0;
+}
+#endif
+#if lesson_15_3_3
+typedef struct lineStack {
+    int data;
+    struct linestack *next;
+}lineStack;
+lineStack *push(lineStack *stack, int data) 
+{
+    lineStack *line = (lineStack*)malloc(sizeof(lineStack));
+    line->data = data;
+    line->next = stack;
+    stack = line;
+    return stack;
+}
+lineStack *pop(lineStack *stack) 
+{
+    if (stack) 
+    {
+        lineStack *p = stack;
+        stack = stack->next;
+        printf("the value of pop out %d\n", p->data);
+        if (stack) 
+        {
+            printf("the new data value of stack is %d\n", stack->data);
+        }
+        else 
+        {
+            printf("now it is empty stack\n");
+        }
+        free(p);
+    }
+    else 
+    {
+        printf("no elem in stack\n");
+        return stack;
+    }
+    return stack;
+}
+int main() 
+{
+    lineStack *line = NULL;
+    line = push(line, 1);
+    line = push(line, 3);
+    line = push(line, 4);
+    line = push(line, 7);
+    line = push(line, 9);
+    line = pop(line);
+    line = pop(line);
+    line = pop(line);
+    line = pop(line);
+    return 0;
+}
+#endif
+#if lesson_15_3_4
+int top = -1;
+void push(char *data, char elem) 
+{
+    data[++top] = elem;
+}
+void pop(char *data) 
+{
+    if (top == -1) 
+    {
+        return;
+    }
+    if (data[top] >= 10) 
+    {
+        printf("%c", data[top] + 55);
+    }
+    else 
+    {
+        printf("%d", data[top]);
+    }
+    top--;
+}
+int scaleFun(char *data, int system) 
+{
+    int k = (int)strlen(data) - 1;
+    int system_10_data = 0;
+    int i;
+    for (i = k; i >= 0; i--) {
+        int temp;
+        if (data[i] >= 48 && data[i] <= 57) {
+            temp = data[i] - 48;
+        }
+        else {
+            temp = data[i] - 55;
+        }
+        system_10_data += temp * pow(system, k - i);
+    }
+    return system_10_data;
+}
+int main() 
+{
+    char data[100] = { 0 };
+    printf("convert numbries, input origin numbric: ");
+    int system;
+    scanf("%d", &system);
+    getchar();
+    printf("input data to convert: ");
+    scanf("%s", data);
+    getchar();
+    int system_10_data = scaleFun(data, system);
+    printf("input new numbirc: ");
+    int newSystem;
+    scanf("%d", &newSystem);
+    getchar();
+    while (system_10_data / newSystem) 
+    {
+        push(data, system_10_data%newSystem);
+        system_10_data = system_10_data / newSystem;
+    }
+    push(data, system_10_data%newSystem);
+    printf("data after converting: \n");
+    while (top != -1) 
+    {
+        pop(data);
+    }
     return 0;
 }
 #endif
