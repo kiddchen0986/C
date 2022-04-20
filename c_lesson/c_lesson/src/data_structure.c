@@ -1,10 +1,4 @@
-﻿/*************************************
-         Author: K.C
-         Date:   2021/10
-
-**************************************/
-
-#include "data_structure.h"
+﻿#include "../include/data_structure.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>

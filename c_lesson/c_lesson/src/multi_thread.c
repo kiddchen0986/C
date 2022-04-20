@@ -1,4 +1,4 @@
-﻿#include"multi_thread.h"
+﻿#include"../include/multi_thread.h"
 
 #if lesson_2_1
 #include <stdio.h>

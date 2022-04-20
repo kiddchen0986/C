@@ -85,12 +85,12 @@
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="data_structure.h" />
-    <ClInclude Include="multi_thread.h" />
+    <ClInclude Include="include\data_structure.h" />
+    <ClInclude Include="include\multi_thread.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="data_structure.c" />
-    <ClCompile Include="multi_thread.c" />
+    <ClCompile Include="src\data_structure.c" />
+    <ClCompile Include="src\multi_thread.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
