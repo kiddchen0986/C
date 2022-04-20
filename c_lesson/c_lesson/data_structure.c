@@ -3780,6 +3780,116 @@ int main()
     return 0;
 }
 #endif
+#if lesson_15_3_5
+top = -1;
+void push(char *a, char elem)
+{
+    a[++top] = elem;
+}
+void pop(char *a)
+{
+    if (top == -1)
+    {
+        return 0;
+    }
+    top--;
+}
+char vist(char *a)
+{
+    if (top != -1)
+    {
+        return a[top];
+    }
+    else
+    {
+        return ' ';
+    }
+}
+int main()
+{
+    char a[30] = { 0 };
+    char b[100];
+    printf("input string: ");
+    scanf("%s", b);
+    int k = strlen(b);
+    for (int i = 0; i < k; i++)
+    {
+        if (b[i] == '{' || b[i] == '(')
+        {
+            push(a, b[i]);
+        }
+        else
+        {
+            if (b[i] == ')')
+            {
+                if (vist(a) == '(')
+                {
+                    pop(a);
+                }
+                else
+                {
+                    printf("match fail!\n");
+                    return 0;
+                }
+            }
+            else if (b[i] == '}')
+            {
+                if (vist(a) == '{')
+                {
+                    pop(a);
+                }
+                else
+                {
+                    printf("match fail!\n");
+                    return 0;
+                }
+            }
+        }
+    }
+    if (top != -1)
+    {
+        printf("match fail!\n");
+    }
+    else
+    {
+        printf("match ok\n");
+    }
+}
+#endif
+#if lesson_15_4_5
+#include <stdio.h>
+#include <string.h>
+int mate(char *A, char* B) 
+{
+    int i = 0, j = 0;
+    int lenA = strlen(A);
+    int lenB = strlen(B);
+    while (i < lenA && j< lenB) 
+    {
+        if (A[i] == B[j]) 
+        {
+            i++;
+            j++;
+        }
+        else 
+        {
+            i = i - j + 1;
+            j = 0;
+        }
+    }
+    if (j == lenB)
+    {
+        return i - strlen(B) + 1; 
+    }
+    return 0;
+}
+int main() 
+{
+    int index = mate("ababcabcacbab", "abcac");
+    printf("%d", index);
+    return 0;
+}
+#endif
 #if lesson_16_1
 #include<string>
 void* mymemorycopy(void* dest, void* src, size_t count)
