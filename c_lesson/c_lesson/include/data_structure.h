@@ -143,7 +143,7 @@
 #define lesson_15_3_2 0     /*stack*/
 #define lesson_15_3_3 0     /*stack*/
 #define lesson_15_3_4 0     /*stack*/
-#define lesson_15_3_5 1     /*stack*/
+#define lesson_15_3_5 0     /*stack*/
 /*********string*******/
 #define lesson_15_4_5 0
 

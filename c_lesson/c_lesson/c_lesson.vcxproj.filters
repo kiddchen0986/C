@@ -25,12 +25,24 @@
     <ClInclude Include="include\multi_thread.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="include\cplus.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\data_structure.c">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\multi_thread.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cplus.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\test.c">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

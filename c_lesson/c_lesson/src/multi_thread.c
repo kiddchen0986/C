@@ -1,7 +1,12 @@
 ﻿#include"../include/multi_thread.h"
+#include"stdio.h"
+#include"stdlib.h"
 
 #if lesson_2_1
 #include <stdio.h>
+#include <stdint.h>
+#include <windows.h>
+//#include<WinBase.h>
 #include <pthread.h>
 #pragma comment(lib,"pthreadVC2.lib")
 //定义线程要执行的函数，arg 为接收线程传递过来的数据
@@ -84,7 +89,7 @@ void *sell_ticket(void *arg)
             //如果票数 >0 ,开始卖票
             if (ticket_sum > 0)
             {
-                Sleep(1);
+                Sleep(2);
                 printf("%d sold the %d ticket\n", pthread_self(), 10 - ticket_sum);
                 ticket_sum--;
             }
@@ -110,15 +115,128 @@ int main()
         }
     }
     Sleep(100);   //等待 4 个线程执行完成
-    //for (i = 0; i < 4; i++)
-    //{
-    //    //阻塞主线程，确认 4 个线程执行完成
-    //    flag = pthread_join(tids[i], &ans);
-    //    if (flag != 0) {
-    //        printf("tid=%d 等待失败！", tids[i]);
-    //        return 0;
-    //    }
-    //}
+    for (i = 0; i < 4; i++)
+    {
+        //阻塞主线程，确认 4 个线程执行完成
+        flag = pthread_join(tids[i], &ans);
+        if (flag != 0) {
+            printf("tid=%d 等待失败！", tids[i]);
+            return 0;
+        }
+    }
+    return 0;
+}
+#endif
+#if lesson_9_1
+#include"pthread.h"
+#include"semaphore.h"
+#include"Windows.h"
+
+sem_t mySem;
+int ticket_sum = 10;
+
+void* sell_ticket(void* arg) 
+{
+    int flag = 0;
+    printf("Thread number: %d\n", pthread_self());
+    for (int i = 0; i < 10; i++) 
+    {
+        flag = sem_wait(&mySem);
+        if (flag == 0) 
+        {
+            if (ticket_sum>0)
+            {
+                Sleep(1);
+                printf("thread %d ", pthread_self());
+                printf("sold the ticket No.%d\n", 10 - ticket_sum + 1);
+                ticket_sum--;
+            }
+        }
+        sem_post(&mySem);
+        Sleep(1);
+    }
+}
+int main()
+{
+    int res;
+    pthread_t tids[4];
+    void *pthread_result;
+
+    res = sem_init(&mySem, 0, 1);
+    for (int i = 0; i < 4; i++) 
+    {
+        res = pthread_create(&tids[1], NULL, &sell_ticket, NULL);
+        if (res != 0) 
+        {
+            printf("Failed to create thread %d", tids[i]);
+        }
+    }
+    Sleep(10);
+    for (int i = 0; i < 4; i++) 
+    {
+        res = pthread_join(tids[i], &pthread_result);
+        if (res != 0) 
+        {
+            printf("Failed to thread %d", tids[i]);
+        }
+    }
+    return 0;
+}
+#endif
+#if lesson_9_2
+#include"semaphore.h"
+#include"windows.h"
+#include"pthread.h"
+
+int num = 5;
+sem_t sem;
+
+void *get_service(void *arg) 
+{
+    int id = *((int *)arg);
+    if (sem_wait(&sem) == 0) //成功则返回0。 sem信号量为0时，则阻塞线程，信号量>0时，则执行下面函数
+    {
+        printf("---customer%d is busying service\n",id);
+        Sleep(2);
+        printf("--customer%d service is done\n", id);
+        sem_post(&sem);
+    }
+    return 0;
+}
+int main() 
+{
+    pthread_t tids[5];
+    void *ans;
+    int res = sem_init(&sem, 0, 2);
+    if (res != 0) 
+    {
+        printf("Failed to create semaphore\n");
+        return 0;
+    }
+    for (int i = 0; i < num; i++) 
+    {
+        res = pthread_create(&tids[i], NULL, get_service, &i);
+        if (res != 0) 
+        {
+            printf("Failed to create thread %d\n", tids[i]);
+            return 0;
+        }
+        else 
+        {
+            printf("customer%d is coming\n", i);
+        }
+        Sleep(1);
+    }
+    for (int i = 0; i < num; i++) 
+    {
+        res = pthread_join(tids[i], NULL);
+        if (res != 0) 
+        {
+            printf("Failed to run thread %d", tids[i]);
+            return 0;
+        }
+    }
+    sem_destroy(&sem);
     return 0;
 }
 #endif
