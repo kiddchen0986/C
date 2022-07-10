@@ -16,3 +16,7 @@
 #define test_1_16 0  // 循环链表实现约瑟夫环
 #define test_1_17 0  // 字符串倒序
 #define test_1_18 0  // 递规反向输出字符串的例子
+#define test_1_19 0  // 栈实现： 括号匹配
+#define test_1_20 0  // 求最大公约数
+#define test_1_21 0  // 求勾股数
+#define test_1_22 0  // 求字符串中最长回文

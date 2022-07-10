@@ -733,3 +733,463 @@ int main(int argc, char *argv[])
     return 0;
 }
 #endif
+#if test_1_19
+#include"stdio.h"
+static int top = -1;
+void push(char *a, char elem) 
+{
+    a[++top] = elem;
+}
+char pop(char *a) 
+{
+    if (top == -1) 
+    {
+        return 0;
+    }
+    a[top] = '\0';
+    --top;
+    return a[top];
+}
+char visit(char *a) 
+{
+    if (top == -1) 
+    {
+        return 0;
+    }
+    return a[top];
+}
+int main() 
+{
+    char a[30] = { 0 };
+    char bracket[30] = { 0 };
+    printf("Enter bracket : ");
+    scanf("%s", a);
+    getchar();
+    int len = strlen(a);
+    for (int i = 0; i < len; i++) 
+    {
+        if ((a[i] == '(') || (a[i] == '{')) 
+        {
+            push(bracket, a[i]);
+        }
+        else 
+        {
+            if (a[i] == ')') 
+            {
+                if (visit(bracket) == '(')
+                {
+                    pop(bracket);
+                }
+                else 
+                {
+                    printf("Match Fail");
+                    return 0;
+                }
+            }
+            else 
+            {
+                if (visit(bracket) == '{')
+                {
+                    pop(bracket);
+                }
+                else 
+                {
+                    printf("Match Fail");
+                    return 0;
+                }
+            }
+        }
+    }
+    if (top == -1) 
+    {
+        printf("Match Ok");
+    }
+    else 
+    {
+        printf("Match Fail");
+    }
+    return 0;
+}
+#endif
+#if test_1_20
+int minv(int a[], int len)
+{
+    int temp;
+    for (int i = 0; i < len - 1; i++)
+    {
+        for (int j = i + 1; j < len; j++)
+        {
+            if (a[i] > a[j])
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+    return a[0];
+}
+int main()
+{
+    int gcd = 0;
+    int a[3] = { 60, 30, 24 };
+    int len = sizeof(a) / sizeof(a[0]);
+    int min = minv(a, len);
+    printf("The min value is : %d\n", min);
+
+    for (int i = min; i > 0; i--)
+    {
+        for (int j = 0; j < len; j++)
+        {
+            if (a[j] % i == 0)
+            {
+                if (j == len - 1)
+                {
+                    gcd = i;
+                    printf("The gcd is :%d", gcd);
+                    return gcd;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    return 0;
+}
+#endif
+#if test_1_21
+#include"math.h"
+int main() 
+{
+    int c = 0, count=0;
+    printf("  a     b    c       a     b    c       a     b    c       a     b    c\n");
+    for (int a = 1; a <= 100; a++) 
+    {
+        for (int b = a + 1; b <= 100; b++) 
+        {
+            c = (int)sqrt(a*a + b * b);
+            if (c*c == a * a + b * b&&a + b > c&&a + c > b&&b + c > a&&c <= 100) 
+            {
+                printf("%4d %4d %4d     ", a, b, c);
+                count++;
+                if (count % 4 == 0)
+                {
+                    printf("\n");
+                }
+            }
+        }
+    }
+    printf("\n");
+    return 0;
+}
+#endif
+#if test_1_22
+char * longestPalindrome(char *s)
+{
+    int len = strlen(s);
+    if (len <= 1) { return s; }
+    int start = 0;
+    int maxlen = 0;
+    //i表示中间元素下标
+    for (int i = 1; i < len; i++)
+    {
+        //偶数长度
+        int low = i - 1;
+        int high = i;
+        while (low >= 0 && high < len && s[low] == s[high])
+        {
+            low--;
+            high++;
+        }
+        if (high - low - 1 > maxlen)
+        {
+            maxlen = high - low - 1;
+            start = low + 1;
+        }
+        //奇数长度
+        low = i - 1; high = i + 1;
+        while (low >= 0 && high < len && s[low] == s[high])
+        {
+            low--;
+            high++;
+        }
+        if (high - low - 1 > maxlen)
+        {
+            maxlen = high - low - 1;
+            start = low + 1;
+        }
+    }
+    char *arr = (char *)malloc(sizeof(int) * (maxlen * 2));
+    int i = 0;
+    for (; i < maxlen; i++)
+    {
+        arr[i] = s[start++];
+    }
+    arr[i] = '\0';
+    return arr;
+}
+int main()
+{
+    char s[8] = "abcdcef";
+    char s1[7] = { 0 };
+    *s1 = longestPalindrome(s);
+    printf("%s\n", s1);
+}
+#endif
+//int main() 
+//{
+//    printf("Enter a string: \n");
+//    int a, sum =0;
+//    int b[10];
+//    scanf("%d", &a);
+//    for (int i = 1; i<a; i++) 
+//    {
+//        for (int j = 1; j < a; j++) 
+//        {
+//            if ((i < j) && (i + j == a))
+//            {
+//                printf("%d, %d\n", i, j);
+//            }
+//            for (int k = 1; k < a; k++) 
+//            {
+//                if (i < j && j < k && i + j + k == a) 
+//                {
+//                    printf("%d, %d, %d\n", i, j, k);
+//                }
+//            }
+//        }
+//    }
+//    return 0;
+//}
+//2. Please write a program which can print all 6 digitsnumbers composed of 1, 2, 2, 3, 4, 5.
+//#include "stdio.h"
+//void showAnother(char *str, int start, int num)
+//{
+//    int i = 0;
+//    char c;
+//    if (str[start] == '\0')
+//    {
+//        printf("%s\n", str);
+//    }
+//
+//    if (str == NULL)
+//        return;
+//
+//    for (i = start; i < num; i++)
+//    {
+//        c = str[start];
+//        str[start] = str[i];
+//        str[i] = c;
+//        showAnother(str, start + 1, num);
+//        c = str[start];
+//        str[start] = str[i];
+//        str[i] = c;
+//    }
+//}
+//void showDigit(char *str, int start, int num)
+//{
+//    int i = 0;
+//    char c;
+//    if (str == NULL)
+//        return;
+//
+//    for (i = start; i < num; i++)
+//    {
+//        c = str[start];
+//        str[start] = str[i];
+//        str[i] = c;
+//        showAnother(str, start + 1, num);
+//        c = str[start];
+//        str[start] = str[i];
+//        str[i] = c;
+//    }
+//
+//
+//}
+//
+//
+//int main()
+//{
+//    char str[] = "122345";
+//
+//    showDigit(str, 0, sizeof(str) / sizeof(str[0]));
+//
+//
+//}
+
+// method 2
+//#include"string.h"
+//void showDigit(char *str, int len)
+//{
+//    char *temp1 = (char*)malloc(sizeof(char));
+//    memcpy(temp1, str, len);
+//    for (int i = 0; i < len - 1; i++) 
+//    {
+//        for (int j = i + 1; j < len&&str[j]!='\0'; j++) 
+//        {
+//            char temp = str[i];
+//            str[i] = str[j];
+//            str[j] = temp;
+//            if (str[i] == str[j])continue;
+//        }
+//    }
+//    if (strcmp(str, temp1)!=0) 
+//    {
+//        showDigit(str, len);
+//    }
+//}
+//int main() 
+//{
+//    char str[] = "122345";
+//    printf("%s\n", str);
+//    showDigit(str, sizeof(str) / sizeof(str[0]));
+//    return 0;
+//}
+//int *numberOfItems(char *s, int startIndices_count, int* startIndices,
+//    int endIndices_count, int *endIndices, int *result_count)
+//{
+//    if (s == NULL && startIndices == NULL && endIndices == NULL)
+//    {
+//        exit(0);
+//    }
+//    if (startIndices_count != endIndices_count)
+//    {
+//        exit(0);
+//    }
+//    int start_indice = 0, end_indice =0;
+//    int *a = (int*)malloc(startIndices_count *sizeof(int));
+//    int m = 0;
+//    for (int i = 0; i < endIndices_count; i++)
+//    {
+//        int flag = 0, count = 0, c = 0;
+//        for (int j = startIndices[i] - 1; j < endIndices[i]; j++)
+//        {
+//            if (s[j] == '|' && flag == 0)
+//            {
+//                start_indice = j;
+//                flag = 1;
+//                count++;
+//                continue;
+//            }
+//            if (s[j] == '|')
+//            {
+//                end_indice = j;
+//                count++;
+//            }
+//            if (end_indice - start_indice > 0)
+//            {
+//                c = end_indice - start_indice + 1 - count;
+//            }
+//        }
+//        a[m++] = c;
+//        printf("%d\n", c);
+//    }
+//    *result_count = endIndices_count;
+//    return a;
+//}
+//int main() 
+//{
+//    int count=0;
+//    char s[] = "*|*|*|";
+//    int b1[1] = { 1 };
+//    int b2[1] = { 6 };
+//    int *aa = numberOfItems(s, 1, b1, 1, b2, &count);
+//    printf("%d %d %d %d\n%d", aa[0], aa[1], aa[2], aa[3], count);
+//}
+//
+//int *miniHeaviestSet(int arr_count, int *arr, int *result_count) 
+//{
+//    int sum = 0, sumA = 0, count = 0;
+//    for (int i = 0; i < arr_count; i++)
+//    {
+//        sum += arr[i];
+//    }
+//    int i, j, t;
+//    for (i = 1; i <= arr_count-1; i++)
+//        for (j = i + 1; j <= arr_count; j++)
+//            if (arr[i] > arr[j])    //如果前一个数比后一个数大，则利用中间变量t实现两值互换
+//            {
+//                t = arr[i];
+//                arr[i] = arr[j];
+//                arr[j] = t;
+//            }
+//    /*for (int i = 0; i < arr_count - 1; i++)
+//    {
+//        for (int j = i + 1; j < arr_count; j++)
+//        {
+//            if (arr[i] < arr[j])
+//            {
+//                int temp = arr[i];
+//                arr[i] = arr[j];
+//                arr[j] = temp;
+//            }
+//        }
+//    }*/
+//    for (int i = 0; i < arr_count; i++)
+//    {
+//        sumA += arr[i];
+//        if (sumA > sum - sumA)
+//        {
+//            break;
+//        }
+//        else
+//        {
+//            count++;
+//        }
+//    }
+//    int *a = malloc(sizeof(int)*(count+1));
+//    for (int i = count; i >=0; i--)
+//    {
+//        *(a + i) = arr[count -i];
+//    }
+//    *result_count = count+1;
+//    return a;
+//}
+//int main() 
+//{
+//    int b = 0;
+//    int a[7] = { 6, 5, 3, 2, 4, 1, 2 };
+//    int *aa = miniHeaviestSet(7, a, &b);
+//    printf("%d %d %d %d", aa[0], aa[1], aa[2], b);
+//     
+//}
+
+int maximumPages(SinglyLinkedListNode* head) 
+{
+    SinglyLinkedListNode* slow = head;
+    SinglyLinkedListNode* fast = slow->next;
+
+//finding middle of linked list
+    while (fast && fast->next)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+//split the list in two
+    SinglyLinkedListNode* head1 = head;
+    SinglyLinkedListNode* head2 = slow->next;
+    slow->next = NULL;
+
+//reverse the second list
+    reverseList(head2);
+
+//calculate max pages
+    int maxi = INT_MIN;
+    int sum = 0;
+
+    SinglyLinkedListNode* ptr1 = head1;
+    SinglyLinkedListNode* ptr2 = head2;
+    while (ptr1 && ptr2)
+    {
+        sum = ptr1->data + ptr2->data;
+        maxi = max(maxi, sum);
+
+        ptr1 = ptr1->next;
+        ptr2 = ptr2->next;
+    }
+
+    return maxi;
+}

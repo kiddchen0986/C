@@ -3850,6 +3850,34 @@ int main()
     }
 }
 #endif
+#if lesson_15_3_8
+int enQueue(int *a, int rear, int data) 
+{
+    a[rear] = data;
+    rear++;
+    return rear;
+}
+int deQueue(int *a, int front, int rear) 
+{
+    while (front != rear) 
+    {
+        printf("Exit queue's data : %d\n", a[front]);
+        front++;
+    }
+}
+int main() 
+{
+    int a[100];
+    int front, rear;
+    front = rear = 0;
+    rear = enQueue(a, rear, 1);
+    rear = enQueue(a, rear, 2);
+    rear = enQueue(a, rear, 3);
+    rear = enQueue(a, rear, 4);
+    deQueue(a, front, rear);
+    return 0;
+}
+#endif
 #if lesson_15_4_5
 #include <stdio.h>
 #include <string.h>
